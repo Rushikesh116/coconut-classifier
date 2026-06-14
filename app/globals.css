@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Clean white and green theme for coconut grading app */
+  --background: 0 0% 100%;
+  --foreground: 22 80% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 22 80% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 22 80% 15%;
+  --primary: 132 61% 36%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 132 50% 85%;
+  --secondary-foreground: 132 61% 36%;
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 132 61% 45%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 132 30% 90%;
+  --input: 0 0% 98%;
+  --ring: 132 61% 36%;
+  --chart-1: 132 61% 36%;
+  --chart-2: 132 61% 45%;
+  --chart-3: 132 50% 85%;
+  --chart-4: 132 40% 70%;
+  --chart-5: 132 30% 55%;
+  --radius: 0.625rem;
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 22 80% 15%;
+  --sidebar-primary: 132 61% 36%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 132 61% 45%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 132 30% 90%;
+  --sidebar-ring: 132 61% 36%;
+}
+
+.dark {
+  --background: 0 0% 8%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 12%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 132 61% 45%;
+  --primary-foreground: 0 0% 8%;
+  --secondary: 132 40% 35%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 25%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 132 61% 55%;
+  --accent-foreground: 0 0% 8%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 20%;
+  --input: 0 0% 15%;
+  --ring: 132 61% 45%;
+  --chart-1: 132 61% 45%;
+  --chart-2: 132 61% 55%;
+  --chart-3: 132 50% 70%;
+  --chart-4: 132 40% 55%;
+  --chart-5: 132 30% 40%;
+  --sidebar: 0 0% 12%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 132 61% 45%;
+  --sidebar-primary-foreground: 0 0% 8%;
+  --sidebar-accent: 132 61% 55%;
+  --sidebar-accent-foreground: 0 0% 8%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-ring: 132 61% 45%;
+}
+
+@theme inline {
+  --font-sans: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: hsl(var(--sidebar));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+body.report-modal-open {
+  overflow: hidden;
+}
+
+@media print {
+  body.report-print-mode {
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  body.report-print-mode * {
+    visibility: hidden !important;
+  }
+
+  body.report-print-mode .session-report-modal,
+  body.report-print-mode .session-report-modal * {
+    visibility: visible !important;
+  }
+
+  body.report-print-mode .session-report-modal {
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: visible !important;
+  }
+
+  body.report-print-mode .session-report-backdrop {
+    display: block !important;
+    min-height: auto !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+
+  body.report-print-mode .session-report-panel {
+    max-width: none !important;
+    width: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  body.report-print-mode .session-report-actions,
+  body.report-print-mode .session-report-close {
+    display: none !important;
+  }
+
+  @page {
+    margin: 14mm;
+    size: auto;
+  }
+}
